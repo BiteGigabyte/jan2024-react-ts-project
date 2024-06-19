@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {movieActions} from "../../redux/slices/carSlice";
+import {movieActions} from "../../redux/slices/movieSlice";
 import {Movie} from "./Movie";
 
 const Movies = () => {
