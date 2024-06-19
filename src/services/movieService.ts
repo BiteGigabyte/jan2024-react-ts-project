@@ -7,9 +7,9 @@ import {AxiosResponse} from "axios";
 import {IMovieInterface} from "../interfaces/movie.interface";
 
 const movieService = {
-    getMovies: async (): Promise<AxiosResponse<IPagination<IMovie>>> => {
+    getMovies: async (page: string): Promise<AxiosResponse<IPagination<IMovie>>> => {
         // console.log(axiosResponse);
-        return await apiService.get(urls.movies.base);
+        return await apiService.get(urls.movies.base(page));
     },
     getImage: async (imageName: string): Promise<AxiosResponse<Blob>> => {
         const response = await imageService.get(urls.movies.getImage(imageName), {

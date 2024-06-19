@@ -11,7 +11,7 @@ const searchMovie = 'search/movie'
 
 const urls = {
     movies: {
-        base: movies,
+        base: (page: string) => movies + `?page=${page}`,
         genres: genres,
         sortByGenres: (genreNumber: number) => movies + `?with_genres=${genreNumber}`,
         movie_details: (movie_id: number) => movie_details + `/${movie_id}`,

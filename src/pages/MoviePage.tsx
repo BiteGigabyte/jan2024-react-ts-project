@@ -8,7 +8,6 @@ const MoviePage = () => {
     const [movie, setMovie] = useState<IMovieInterface | null>(null);
 
     let { id} = useParams<{ id: string }>();
-    console.log(id);
 
     useEffect(() => {
         const fetchMovie = async () => {

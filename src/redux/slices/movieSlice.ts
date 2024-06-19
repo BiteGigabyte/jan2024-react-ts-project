@@ -6,18 +6,20 @@ import {movieService} from "../../services/movieService";
 interface IState {
     movies: IMovie[];
     error: string | null;
+    total_pages: number | null;
 }
 
 let initialState:IState = {
     movies: [],
-    error: null
+    error: null,
+    total_pages: null
 };
 
-const getMovies= createAsyncThunk<IPagination<IMovie>, void>  (
+const getMovies= createAsyncThunk<IPagination<IMovie>, string>  (
     'carSlice/getAll',
-    async (_, {rejectWithValue}) => {
+    async (page: string, {rejectWithValue}) => {
                 try {
-                    let {data} = await movieService.getMovies();
+                    let {data} = await movieService.getMovies(page);
                     console.log(data);
                     return data;
                 } catch (e) {
@@ -37,6 +39,7 @@ let movieSlice = createSlice({
             .addCase(getMovies.fulfilled, (state, action) => {
                 if (action.payload && action.payload.results) {
                     state.movies = action.payload.results;
+                    state.total_pages = action.payload.total_pages;
                 }
                 // else {
                 //     state.movies = [];
