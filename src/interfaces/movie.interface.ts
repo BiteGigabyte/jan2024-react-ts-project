@@ -1,9 +1,9 @@
 export interface IMovieInterface {
     backdrop_path: string;
-    genre_ids: {
+    genres: {
         id: number;
         name: string;
-    };
+    }[];
     id: number;
     original_language: string;
     original_title: string;

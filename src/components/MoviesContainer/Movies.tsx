@@ -20,12 +20,12 @@ const Movies = () => {
     return (
         <div>
             {total_pages ? (
-                <>
+                <div>
                     <PaginationComponent page={query.get('page') || '1'} total_pages={total_pages}/>
                     {movies.map(movie => (
                         <Movie key={movie.id} movie={movie}/>
                     ))}
-                </>
+                </div>
             ) : (
                 <div>Loading...</div>
             )}

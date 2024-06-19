@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const MovieInfoComponent: FC<IProps> = ({movie}) => {
-    let {id, original_title, release_date, overview, original_language, poster_path, vote_average} = movie;
+    let {id, original_title, release_date, overview, original_language, poster_path, vote_average, genres} = movie;
 
     let navigate = useNavigate();
 
@@ -19,6 +19,7 @@ const MovieInfoComponent: FC<IProps> = ({movie}) => {
         <div>
             <button onClick={() => navigate(-1)}>back</button>
             <div>id: {id}</div>
+            <div>genres: {genres.map(genre => <div>{genre.name};</div>)}</div>
             <div>original_title: {original_title}</div>
             <div>release_date: {release_date}</div>
             <div>overview: {overview}</div>

@@ -22,6 +22,7 @@ const movieService = {
         console.log(movie);
         return movie;
     },
+    searchByGenres: async (genreNumber: number): Promise<AxiosResponse<IPagination<IMovie>>> => await apiService.get(urls.movies.sortByGenres(genreNumber)),
     getGenres: async (): Promise<AxiosResponse<IGenres>> => await apiService.get(urls.movies.genres),
     searchMovies: async (movieName: string): Promise<AxiosResponse<IMovie>> => await apiService.get(urls.movies.searchMovie(movieName)),
 }
