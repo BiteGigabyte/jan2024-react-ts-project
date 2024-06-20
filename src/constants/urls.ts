@@ -13,7 +13,7 @@ const urls = {
     movies: {
         base: (page: string) => movies + `?page=${page}`,
         genres: genres,
-        sortByGenres: (genreNumber: number) => movies + `?with_genres=${genreNumber}`,
+        sortByGenres: (genreNumber: number, page: number) => movies + `?with_genres=${genreNumber}&page=${page}`,
         movie_details: (movie_id: number) => movie_details + `/${movie_id}`,
         searchMovie: (query: string) => searchMovie + `?query=${query}`,
         getImage:  (posterName: string) => imageURL + '/' + posterName

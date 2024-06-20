@@ -24,12 +24,10 @@ const MoviePage = () => {
         fetchMovie();
     }, [id]);
 
-    console.log(movie?.genres);
-
     return (
         <div>
 
-            {movie ? <MovieInfoComponent movie={movie} /> : <div>Loading...</div>}
+            {movie ? <MovieInfoComponent movie={movie}/> : <div>Loading...</div>}
         </div>
     );
 };

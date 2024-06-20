@@ -2,25 +2,35 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IPagination} from "../../interfaces/paginationInterface";
 import {IMovie} from "../../interfaces/movies.interface";
 import {movieService} from "../../services/movieService";
+import {IGenres} from "../../interfaces/genres.interface";
+import {IMovieInterface} from "../../interfaces/movie.interface";
 
 interface IState {
     movies: IMovie[];
     error: string | null;
     total_pages: number | null;
+    genres: IGenres | null;
+    moviesByGenre: IPagination<IMovie> | null;
 }
 
 let initialState:IState = {
     movies: [],
     error: null,
-    total_pages: null
+    total_pages: null,
+    genres: null,
+    moviesByGenre: null
 };
 
+interface GetMoviesByGenreArgs {
+    id: number;
+    page: number;
+}
+
 const getMovies= createAsyncThunk<IPagination<IMovie>, string>  (
-    'carSlice/getAll',
+    'movieSlice/getMovies',
     async (page: string, {rejectWithValue}) => {
                 try {
                     let {data} = await movieService.getMovies(page);
-                    console.log(data);
                     return data;
                 } catch (e) {
                     return rejectWithValue(e);
@@ -28,10 +38,33 @@ const getMovies= createAsyncThunk<IPagination<IMovie>, string>  (
             }
 )
 
+const getGenres = createAsyncThunk<IGenres, void>(
+    'movieSlice/getGenres',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await movieService.getGenres();
+            return response.data; // Повертаємо дані жанрів з відповіді
+        } catch (error) {
+            return rejectWithValue(error); // Обробляємо помилку
+        }
+    }
+);
 
+const getMoviesByGenre = createAsyncThunk<IPagination<IMovie>, GetMoviesByGenreArgs>(
+    'movieSlice/getMoviesByGenre',
+    async ({ id, page }, { rejectWithValue }) => {
+        try {
+            const response = await movieService.searchByGenres(id, page);
+            console.log(response);
+            return response.data; // Повертаємо дані, які очікує createAsyncThunk
+        } catch (error) {
+            return rejectWithValue(error); // Обробляємо помилку
+        }
+    }
+);
 
 let movieSlice = createSlice({
-    name: 'carSlice',
+    name: 'movieSlice',
     initialState,
     reducers: {},
     extraReducers: builder =>
@@ -48,13 +81,27 @@ let movieSlice = createSlice({
             .addCase(getMovies.rejected, (state, action) => {
                 // state.error = 'erroro';
             })
+            .addCase(getGenres.fulfilled, (state, action) => {
+                state.genres = action.payload;
+            })
+            .addCase(getGenres.rejected, (state, action) => {
+                // state.error = 'erroro';
+            })
+            .addCase(getMoviesByGenre.fulfilled, (state, action) => {
+                state.moviesByGenre = action.payload;
+            })
+            .addCase(getMoviesByGenre.rejected, (state, action) => {
+                // state.error = 'erroro';
+            })
 });
 
 const {reducer: movieReducer, actions} = movieSlice;
 
 const movieActions = {
     ...actions,
-    getMovies
+    getMovies,
+    getGenres,
+    getMoviesByGenre
 }
 
 export {

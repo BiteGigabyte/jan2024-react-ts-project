@@ -10,6 +10,7 @@ const PaginationComponent: FC<IProps> = ({page, total_pages}) => {
     let [, setQuery] = useSearchParams();
     const currentPage = parseInt(page);
 
+
     const goToPage = (newPage: number) => {
         setQuery({page: newPage.toString()});
     };
