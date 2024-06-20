@@ -13,6 +13,11 @@ interface IState {
     moviesBySearch: IPagination<IMovie> | null;
 }
 
+interface GetMoviesByGenreArgs {
+    id: number;
+    page: number;
+}
+
 let initialState:IState = {
     movies: [],
     error: null,
@@ -22,10 +27,6 @@ let initialState:IState = {
     moviesBySearch: null
 };
 
-interface GetMoviesByGenreArgs {
-    id: number;
-    page: number;
-}
 
 const getMovies= createAsyncThunk<IPagination<IMovie>, string>  (
     'movieSlice/getMovies',
