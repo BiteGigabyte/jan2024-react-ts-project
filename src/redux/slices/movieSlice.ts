@@ -3,7 +3,6 @@ import {IPagination} from "../../interfaces/paginationInterface";
 import {IMovie} from "../../interfaces/movies.interface";
 import {movieService} from "../../services/movieService";
 import {IGenres} from "../../interfaces/genres.interface";
-import {IMovieInterface} from "../../interfaces/movie.interface";
 
 interface IState {
     movies: IMovie[];
@@ -11,6 +10,7 @@ interface IState {
     total_pages: number | null;
     genres: IGenres | null;
     moviesByGenre: IPagination<IMovie> | null;
+    moviesBySearch: IPagination<IMovie> | null;
 }
 
 let initialState:IState = {
@@ -18,7 +18,8 @@ let initialState:IState = {
     error: null,
     total_pages: null,
     genres: null,
-    moviesByGenre: null
+    moviesByGenre: null,
+    moviesBySearch: null
 };
 
 interface GetMoviesByGenreArgs {
@@ -63,6 +64,20 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovie>, GetMoviesByGenreA
     }
 );
 
+const searchMovies = createAsyncThunk<IPagination<IMovie>, string>(
+    'movieSlice/searchMovies',
+    async (name :string, { rejectWithValue }) => {
+        try {
+            const response = await movieService.searchMovies(name);
+            console.log(response.data);
+            return response.data; // Повертаємо дані, які очікує createAsyncThunk
+        } catch (error) {
+            return rejectWithValue(error); // Обробляємо помилку
+        }
+    }
+);
+
+
 let movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -93,6 +108,13 @@ let movieSlice = createSlice({
             .addCase(getMoviesByGenre.rejected, (state, action) => {
                 // state.error = 'erroro';
             })
+            .addCase(searchMovies.fulfilled, (state,  action) => {
+            state.moviesBySearch = action.payload;
+            })
+            .addCase(searchMovies.rejected, (state,  action) => {
+            // state.error = actions.payload;
+            })
+
 });
 
 const {reducer: movieReducer, actions} = movieSlice;
@@ -101,7 +123,8 @@ const movieActions = {
     ...actions,
     getMovies,
     getGenres,
-    getMoviesByGenre
+    getMoviesByGenre,
+    searchMovies
 }
 
 export {
