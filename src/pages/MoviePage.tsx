@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MovieInfoComponent } from "../components/MovieContainer/MovieInfoComponent";
+import { MovieInfoComponent } from "../components/MovieInfoContainer/MovieInfoComponent";
 import { movieService } from "../services/movieService";
 import { useParams } from "react-router-dom";
 import {IMovieInterface} from "../interfaces/movie.interface";

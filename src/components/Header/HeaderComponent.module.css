@@ -10,7 +10,7 @@
 
     color: white;
 
-    background-color: black;
+    background-color: rgb(0, 0, 0, 0.5);
 
     margin: 0.5vh 0 1.5vh;
 }
@@ -24,10 +24,19 @@
     color: deepskyblue;
 }
 
-.Header > button > img {
+.Header > div > button > img {
     width: 40px;
     height: 40px;
     cursor: pointer; /* Додали курсор для кнопки */
+}
+
+.SwithcerDiv {
+    height: 50px;
+    width: 11%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .AccountInfoModal {
