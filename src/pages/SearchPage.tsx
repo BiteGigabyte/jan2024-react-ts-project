@@ -5,8 +5,6 @@ import MoviesBySearchComponent from "../components/MoviesBySearch/MoviesBySearch
 
 const SearchPage = () => {
 
-
-
     return (
         <div>
             <MoviesBySearchComponent/>

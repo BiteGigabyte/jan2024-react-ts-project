@@ -65,11 +65,11 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovie>, GetMoviesByGenreA
     }
 );
 
-const searchMovies = createAsyncThunk<IPagination<IMovie>, string>(
+const searchMovies = createAsyncThunk<IPagination<IMovie>, {name: string, page: string }>(
     'movieSlice/searchMovies',
-    async (name :string, { rejectWithValue }) => {
+    async ({name, page}, { rejectWithValue }) => {
         try {
-            const response = await movieService.searchMovies(name);
+            const response = await movieService.searchMovies(name, page);
             console.log(response.data);
             return response.data; // Повертаємо дані, які очікує createAsyncThunk
         } catch (error) {

@@ -24,7 +24,7 @@ const movieService = {
     },
     searchByGenres: async (genreNumber: number, page: number): Promise<AxiosResponse<IPagination<IMovie>>> => await apiService.get(urls.movies.sortByGenres(genreNumber, page)),
     getGenres: async (): Promise<AxiosResponse<IGenres>> => await apiService.get(urls.movies.genres),
-    searchMovies: async (movieName: string): Promise<AxiosResponse<IPagination<IMovie>>> => await apiService.get(urls.movies.searchMovie(movieName)),
+    searchMovies: async (movieName: string, page: string): Promise<AxiosResponse<IPagination<IMovie>>> => await apiService.get(urls.movies.searchMovie(movieName, page)),
 }
 
 export {

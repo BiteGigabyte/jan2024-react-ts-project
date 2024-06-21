@@ -15,7 +15,7 @@ const urls = {
         genres: genres,
         sortByGenres: (genreNumber: number, page: number) => movies + `?with_genres=${genreNumber}&page=${page}`,
         movie_details: (movie_id: number) => movie_details + `/${movie_id}`,
-        searchMovie: (query: string) => searchMovie + `?query=${query}`,
+        searchMovie: (query: string, page: string) => searchMovie + `?query=${query}&page=${page}`,
         getImage:  (posterName: string) => imageURL + '/' + posterName
     },
     account: {
