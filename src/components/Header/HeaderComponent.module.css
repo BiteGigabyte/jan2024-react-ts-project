@@ -1,5 +1,71 @@
 .Header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around; /* Змінили justify-content на flex-end, щоб кнопка була праворуч */
     align-items: center;
+    position: relative; /* Додали позицію relative для контейнера кнопки */
+    height: 60px; /* Задали висоту, яка відповідає розміру кнопки з зображенням */
+
+    font-weight: 700;
+    font-size: 150%;
+
+    color: white;
+
+    background-color: black;
+
+    margin: 0.5vh 0 1.5vh;
+}
+
+.Header a {
+    text-decoration: none;
+    color: lightskyblue;
+}
+.Header a:hover {
+    text-decoration: underline;
+    color: deepskyblue;
+}
+
+.Header > button > img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer; /* Додали курсор для кнопки */
+}
+
+.AccountInfoModal {
+    position: absolute; /* Змінили на позицію absolute */
+    top: calc(100% - 5px); /* Відстань від нижнього краю кнопки до верхнього краю модального вікна */
+    right: 0; /* Встановили правий край вікна модалки на правий край кнопки */
+    transform: translateX(0); /* Змінили трансформацію на 0, щоб вікно не зміщалося горизонтально */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px; /* Максимальна ширина модального вікна */
+    width: 90%; /* Ширина модального вікна */
+    z-index: 1000; /* Високий z-index, щоб вікно було над іншим вмістом */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь для ефекту плавності */
+    display: none; /* По замовчуванню вікно приховане */
+}
+
+/* Показуємо вікно модального вікна, коли клікають на кнопку */
+.Header:hover .AccountInfoModal {
+    display: block;
+}
+
+.ModalContent {
+    position: relative;
+}
+
+.CloseButton {
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #aaa;
+}
+
+.CloseButton:hover,
+.CloseButton:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -1,0 +1,60 @@
+.movieComponent {
+    width: 17vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease; /* Додано зміну для ефекту збільшення та затемнення */
+}
+
+.movieComponent:hover {
+    transform: scale(1.03); /* Збільшуємо розмір при наведенні */
+    filter: brightness(80%); /* Затемнюємо блок на 15% */
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+.movieComponent:active {
+    transform: scale(1); /* Повертаємо оригінальний розмір при кліку */
+    filter: brightness(100%); /* Зберігаємо повний затемнення при кліку */
+}
+
+.movieComponent > img {
+    width: 100%;
+    display: block;
+    z-index: 1; /* Підвищуємо z-index, щоб зображення було над затемненням */
+}
+
+.movieComponent > .playIcon {
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5vw;
+    height: 5vw;
+    background-image: url('./play-button-icon-png-33.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0; /* Початково ховаємо кнопку "плей" */
+    transition: opacity 0.3s ease; /* Плавна анімація з'явлення кнопки "плей" */
+    z-index: 2; /* Забезпечуємо, що кнопка "плей" буде над затемненням */
+}
+
+.movieComponent:hover > .playIcon {
+    opacity: 1; /* Показуємо кнопку "плей" при наведенні */
+}
+
+.movieComponent > .playIcon:hover {
+    cursor: pointer; /* Змінюємо курсор на показчик при наведенні на кнопку "плей" */
+}
+
+.movieComponent > div {
+    width: 100%;
+    margin-bottom: auto;
+    text-align: center;
+    z-index: 3; /* Забезпечуємо, що текст буде над затемненням і кнопкою "плей" */
+}
+
+.movieTitle {
+    margin-top: 10px; /* Додано відступ між заголовком і рейтингом */
+}

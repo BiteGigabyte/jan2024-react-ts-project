@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { movieActions } from "../redux/slices/movieSlice";
 import { GenresComponent } from "../components/GenresComponent/GenresComponent";
-import { Movie } from "../components/MoviesContainer/Movie";
+import { Movie } from "../components/MovieComponent/Movie";
 import {MoviesByGenresComponent} from "../components/MoviesByGenres/MoviesByGenresComponent";
 
 const GenresPage = () => {

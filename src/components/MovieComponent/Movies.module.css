@@ -1,0 +1,14 @@
+.MoviesComponent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.MoviesComponentDiv {
+    display: flex;
+    flex-wrap: wrap;
+    width: 89vw;
+    column-gap: 1vw;
+    row-gap: 1.5vh;
+}

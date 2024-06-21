@@ -1,10 +1,13 @@
 import React from 'react';
-import {HeaderComponent} from "../components/Header/HeaderComponent";
 import {Outlet} from "react-router-dom";
+
+import {HeaderComponent} from "../components/Header/HeaderComponent";
+import css from './MainLayout.styles.module.css';
+
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className={css.josefinSansFont1}>
             <HeaderComponent/>
             <Outlet/>
         </div>

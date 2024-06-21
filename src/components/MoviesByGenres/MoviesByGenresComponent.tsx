@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useParams, useSearchParams } from "react-router-dom";
 import { movieActions } from "../../redux/slices/movieSlice";
-import { Movie } from "../MoviesContainer/Movie";
+import { Movie } from "../MovieComponent/Movie";
 import { PaginationComponent } from "../PaginationComponent/PaginationComponent";
 
 const MoviesByGenresComponent = () => {

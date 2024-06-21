@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {movieActions} from "../../redux/slices/movieSlice";
-import {Movie} from "../MoviesContainer/Movie";
+import {Movie} from "../MovieComponent/Movie";
 
 interface IFormProps {
     searchName: string,

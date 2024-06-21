@@ -1,0 +1,43 @@
+
+.PaginationComponentDiv {
+    display: flex;
+    margin: 2vh 0;
+}
+
+.PaginationComponentDiv > h2 {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: deepskyblue;
+}
+
+.PaginationComponentDiv > button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightskyblue; /* Загальний колір фону */
+    border: none; /* Видаляємо рамку */
+    cursor: pointer; /* Змінюємо курсор на показчик */
+    transition: background-color 0.3s ease; /* Плавна анімація зміни кольору фону */
+}
+
+.PaginationComponentDiv > button:hover {
+    background-color: deepskyblue; /* Колір фону при наведенні */
+}
+
+.PaginationComponentDiv > button:disabled {
+    background-color: #aaaaaa; /* Колір фону для відключених кнопок */
+    cursor: default; /* Змінюємо курсор на стандартний */
+}
+
+/* Додаткові стилізації для активної кнопки */
+.PaginationComponentDiv > button.active {
+    background-color: darkcyan; /* Колір фону для активної кнопки */
+}
