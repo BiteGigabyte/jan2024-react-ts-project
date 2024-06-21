@@ -1,0 +1,13 @@
+#light {
+    background-color: white;
+    color: black;
+}
+
+#dark {
+    background-color: #434343;
+    color: white;
+
+    padding-top: 0.1vh;
+
+    min-height: 99.9vh;
+}
