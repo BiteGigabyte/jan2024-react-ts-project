@@ -13,30 +13,38 @@ interface IFormProps {
 }
 
 const MoviesBySearchComponent: FC = () => {
-    const { moviesBySearch } = useAppSelector(state => state.movies);
+    const { moviesBySearch, searchName, searchPage } = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     const formObj = useForm<IFormProps>();
-    const { register, handleSubmit } = formObj;
+    const { register, handleSubmit, setValue } = formObj;
 
     const [query, setQuery] = useSearchParams();
 
     useEffect(() => {
         // Оновлюємо параметр page до значення '1' при монтажі компонента
-        setQuery({ page: '1' });
+        setQuery({ page: searchPage || '1' });
     }, []);
 
     useEffect(() => {
         // Викликаємо пошук фільмів при зміні параметра page
         dispatch(movieActions.searchMovies({
-            name: formObj.getValues('searchName'),  // Отримуємо значення з форми
-            page: query.get('page') || '1'  // Отримуємо значення параметра page
+            name: formObj.getValues('searchName') || searchName,
+            page: query.get('page') || searchPage || '1'
         }));
     }, [query.get('page')]);  // Вказуємо залежність від query.get('page')
 
     const save = (formValues: IFormProps) => {
         // Встановлюємо новий параметр page у URL при відправці форми
         setQuery({ page: '1' });
+
+        // Зберігаємо значення searchName та оновлюємо searchPage у Redux store
+        dispatch(movieActions.searchNameSaver({ searchName: formValues.searchName, searchPage: '1' }));
+
+        // Оновлюємо значення searchName в локальному стані форми
+        setValue('searchName', formValues.searchName);
+
+        // Викликаємо пошук фільмів з новими значеннями
         dispatch(movieActions.searchMovies({
             name: formValues.searchName,
             page: '1'  // Встановлюємо значення '1' як стартове значення для page

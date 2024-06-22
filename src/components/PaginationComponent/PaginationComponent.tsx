@@ -2,6 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import React, { FC } from 'react';
 
 import css from './PaginationComponent.module.css';
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
+import {movieActions} from "../../redux/slices/movieSlice";
 
 interface IProps {
     page: string;
@@ -12,8 +14,12 @@ const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
     let [query, setQuery] = useSearchParams();
     const currentPage = parseInt(page);
 
+    let dispatch = useAppDispatch();
+    let {searchName} = useAppSelector(state => state.movies);
+
     const goToPage = (newPage: number) => {
         setQuery({ page: newPage.toString() });
+        dispatch(movieActions.searchNameSaver({searchPage: newPage.toString(), searchName: `${searchName}`}))
     };
 
     return (

@@ -11,6 +11,8 @@ interface IState {
     genres: IGenres | null;
     moviesByGenre: IPagination<IMovie> | null;
     moviesBySearch: IPagination<IMovie> | null;
+    searchName: string;
+    searchPage: string | null;
 }
 
 interface GetMoviesByGenreArgs {
@@ -24,9 +26,15 @@ let initialState:IState = {
     total_pages: null,
     genres: null,
     moviesByGenre: null,
-    moviesBySearch: null
+    moviesBySearch: null,
+    searchName: '',
+    searchPage: null
 };
 
+interface SearchParams {
+    searchName: string;
+    searchPage: string;
+}
 
 const getMovies= createAsyncThunk<IPagination<IMovie>, string>  (
     'movieSlice/getMovies',
@@ -77,6 +85,17 @@ const searchMovies = createAsyncThunk<IPagination<IMovie>, {name: string, page: 
     }
 );
 
+const searchNameSaver = createAsyncThunk<SearchParams, SearchParams>(
+    'movieSlice/searchNameSaver',
+    async (params: SearchParams, { rejectWithValue }) => {
+        try {
+            // Повертаємо об'єкт, який містить searchName та searchPage
+            return params;
+        } catch (error) {
+            return rejectWithValue(error); // Обробляємо помилку
+        }
+    }
+);
 
 let movieSlice = createSlice({
     name: 'movieSlice',
@@ -114,6 +133,13 @@ let movieSlice = createSlice({
             .addCase(searchMovies.rejected, (state,  action) => {
             // state.error = actions.payload;
             })
+            .addCase(searchNameSaver.fulfilled, (state, action) => {
+                state.searchName = action.payload.searchName;
+                state.searchPage = action.payload.searchPage;
+            })
+            .addCase((searchNameSaver.rejected), (state, action) => {
+                //.....
+            })
 
 });
 
@@ -124,7 +150,8 @@ const movieActions = {
     getMovies,
     getGenres,
     getMoviesByGenre,
-    searchMovies
+    searchMovies,
+    searchNameSaver
 }
 
 export {
