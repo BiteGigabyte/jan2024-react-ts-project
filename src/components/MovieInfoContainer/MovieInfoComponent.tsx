@@ -4,7 +4,6 @@ import {RatingStar} from "react-ts-rating-star";
 
 import {imageURL, urls} from "../../constants/urls";
 import css from './MovieInfoComponent.styles.module.css';
-import {IMovie} from "../../interfaces/movies.interface";
 import {IMovieInterface} from "../../interfaces/movie.interface";
 
 
@@ -40,7 +39,7 @@ const MovieInfoComponent: FC<IProps> = ({movie}) => {
                         <div><span className={css.genresSpan}>Genres:</span>
                             <div
                                 className={css.MovieInfoComponentDivDivGeneralDivDIv}>{genres && genres.map((genre, index) =>
-                                <div className={css.genreElem} key={index}><b>{genre.name}</b></div>)}</div>
+                                <div onClick={() => navigate(`/genres/${genre.id}`)} className={css.genreElem} key={index}><b>{genre.name}</b></div>)}</div>
                         </div>
                         <div><span>Release date:</span> <b>{release_date}</b></div>
                         <div><span>Original language:</span> <b>{original_language}</b></div>

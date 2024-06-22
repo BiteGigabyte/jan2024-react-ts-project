@@ -10,6 +10,7 @@
     border: 0;
 
     margin-left: 2vw;
+
 }
 
 .MovieInfoComponentButton > img {
@@ -26,10 +27,14 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+
+    font-size: 150%;
 }
 
 .MovieInfoComponentDiv span {
     display: block;
+
+    color: orangered;
 }
 
 .genresSpan {
@@ -45,8 +50,10 @@
 
 .MovieInfoComponentDivDiv {
     display: flex;
-
+    justify-content: space-evenly;
     column-gap: 6vw;
+
+    width: 85%;
 }
 
 .MovieInfoComponentDivDivGeneralDiv {
@@ -57,7 +64,7 @@
 }
 
 .MovieInfoComponentDivDivImage {
-    width: 40vw;
+    width: 28vw;
 }
 
 .MovieInfoComponentDivDivGeneralDivDIv {
@@ -69,7 +76,7 @@
 }
 
 .MovieInfoComponentDivOverviewDiv {
-    width: 89vw;
+    width: 75vw;
     margin-top: 2vh;
     margin-bottom: 7vh;
 }
