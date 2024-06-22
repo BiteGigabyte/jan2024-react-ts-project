@@ -69,6 +69,13 @@
 
 .MovieInfoComponentDivDivGeneralDivDIv {
     display: flex;
+
+    color: lightskyblue;
+}
+.genreName:hover {
+    color: deepskyblue;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .genreElem {

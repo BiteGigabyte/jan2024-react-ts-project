@@ -5,17 +5,20 @@ import { movieActions } from "../redux/slices/movieSlice";
 import { GenresComponent } from "../components/MoviesByGenres/GenresComponent/GenresComponent";
 import { MoviesByGenresComponent } from "../components/MoviesByGenres/MoviesByGenresComponent";
 import css from './Genres.module.css';
+import {useParams} from "react-router-dom";
 
 const GenresPage = () => {
-    const { genres, moviesByGenre } = useAppSelector(state => state.movies);
+    const { genres } = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const [activeGenre, setActiveGenre] = useState<number | null>(null); // Додано стан для активного жанру
+
+    let param = useParams();
 
     useEffect(() => {
         if (!genres) {
             dispatch(movieActions.getGenres());
         }
-    }, [dispatch]);
+    }, [dispatch, genres]);
 
     const handleGenreClick = (genreId: number) => {
         setActiveGenre(genreId);
@@ -33,7 +36,7 @@ const GenresPage = () => {
                     />
                 )) : '...loading genres.'}
             </div>
-            <MoviesByGenresComponent/>
+            {param.id && <MoviesByGenresComponent/>}
         </div>
     );
 };
