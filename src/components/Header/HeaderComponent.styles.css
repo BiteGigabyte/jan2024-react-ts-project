@@ -1,4 +1,4 @@
- .MuiSwitch-track css-1yjjitx-MuiSwitch-track {
+.MuiSwitch-track {
     background-color: white;
 }
 
@@ -8,4 +8,14 @@
      color: #F71626 !important;
      /* Додайте інші стилі, які підходять до вашого дизайну */
      text-decoration: underline !important;
+ }
+
+
+ #SwithcerDiv {
+     height: 50px;
+     width: 11%;
+
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
  }

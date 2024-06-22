@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {useAppDispatch} from "../hooks/reduxHooks";
-import {movieActions} from "../redux/slices/movieSlice";
+import React from 'react';
+
 import MoviesBySearchComponent from "../components/MoviesBySearch/MoviesBySearchComponent";
 
 const SearchPage = () => {

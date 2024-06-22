@@ -30,14 +30,14 @@
     cursor: pointer; /* Додали курсор для кнопки */
 }
 
-.SwithcerDiv {
+.SwitcherDiv {
     height: 50px;
     width: 11%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .AccountInfoModal {
     position: absolute; /* Змінили на позицію absolute */

@@ -1,0 +1,46 @@
+.MoviesBySearchComponent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.MoviesBySearchComponentForm {
+    display: flex;
+}
+
+.MoviesBySearchComponentDiv {
+    display: flex;
+    flex-wrap: wrap;
+
+    column-gap: 1vw;
+    row-gap: 1.5vh;
+
+    justify-content: center;
+
+    margin-top: 2vh;
+}
+
+.MoviesBySearchComponentFormInput {
+    height: 30px;
+
+    width: 50vw;
+
+    text-align: center;
+
+}
+
+.MoviesBySearchComponentFormButton {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 0.5vw;
+}
+
+.MoviesBySearchComponentFormButton:hover {
+    background-color: lightskyblue;
+}

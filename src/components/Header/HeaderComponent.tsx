@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Switch } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import css from './HeaderComponent.module.css';
 import { accountActions } from '../../redux/slices/accountSlice';
+import css from './HeaderComponent.module.css';
 import './HeaderComponent.styles.css';
 
 interface IProps {
@@ -60,7 +60,7 @@ const HeaderComponent: FC<IProps> = ({ switchTheme }) => {
                     Search
                 </Link>
             </div>
-            <div className={css.SwitcherDiv}>
+            <div className={css.SwitcherDiv} id={'SwitcherDiv'}>
                 <Switch
                     onChange={switchTheme}
                     inputProps={{ 'aria-label': 'controlled' }}
