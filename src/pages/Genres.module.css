@@ -1,0 +1,18 @@
+.Genres {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.GenresMainDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    column-gap: 10px;
+    row-gap: 5px;
+
+    width: 89vw;
+}

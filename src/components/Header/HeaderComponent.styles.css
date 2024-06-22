@@ -1,3 +1,11 @@
  .MuiSwitch-track css-1yjjitx-MuiSwitch-track {
     background-color: white;
 }
+
+ .active {
+     /*background-color: #f0f0f0; !* Змініть кольори і стилі на ваш смак *!*/
+     font-weight: bold;
+     color: #F71626 !important;
+     /* Додайте інші стилі, які підходять до вашого дизайну */
+     text-decoration: underline !important;
+ }

@@ -1,0 +1,16 @@
+.MoviesByGenresDiv {
+    display: flex;
+    flex-wrap: wrap;
+    width: 89vw;
+    column-gap: 1vw;
+    row-gap: 1.5vh;
+
+    padding: 5px;
+}
+
+.MoviesByGenres {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
