@@ -70,7 +70,6 @@ const searchMovies = createAsyncThunk<IPagination<IMovie>, {name: string, page: 
     async ({name, page}, { rejectWithValue }) => {
         try {
             const response = await movieService.searchMovies(name, page);
-            console.log(response.data);
             return response.data; // Повертаємо дані, які очікує createAsyncThunk
         } catch (error) {
             return rejectWithValue(error); // Обробляємо помилку

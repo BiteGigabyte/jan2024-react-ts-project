@@ -24,42 +24,41 @@ const FormComponent: FC = () => {
     useEffect(() => {
         // Оновлюємо параметр page до значення '1' при монтажі компонента
         setQuery({ page: '1' });
-    }, [setQuery]);
+    }, []);
 
     useEffect(() => {
-        const page = query.get('page') || '1'; // Отримуємо значення параметра page
-
         // Викликаємо пошук фільмів при зміні параметра page
         dispatch(movieActions.searchMovies({
-            name: formObj.getValues('searchName'), // Отримуємо значення з форми
-            page: page // Використовуємо отримане значення параметра page
+            name: formObj.getValues('searchName'),  // Отримуємо значення з форми
+            page: query.get('page') || '1'  // Отримуємо значення параметра page
         }));
-    }, [query, dispatch, formObj]); // Додаємо всі залежності
+    }, [query.get('page')]);  // Вказуємо залежність від query.get('page')
 
     const save = (formValues: IFormProps) => {
         // Встановлюємо новий параметр page у URL при відправці форми
         setQuery({ page: '1' });
         dispatch(movieActions.searchMovies({
             name: formValues.searchName,
-            page: '1' // Встановлюємо значення '1' як стартове значення для page
+            page: '1'  // Встановлюємо значення '1' як стартове значення для page
         }));
     };
 
     return (
         <div className={css.MoviesBySearchComponent}>
             <form className={css.MoviesBySearchComponentForm} onSubmit={handleSubmit(save)}>
-                <input className={css.MoviesBySearchComponentFormInput} type="text" {...register('searchName')} />
+                <input className={css.MoviesBySearchComponentFormInput} placeholder='Movie name' type="text" {...register('searchName')} />
                 <button className={css.MoviesBySearchComponentFormButton}>
-                    <img src="https://img.icons8.com/?size=30&id=DZe3wFKTc8IK&format=png&color=000000" alt="searchButton" />
+                    <img src="https://img.icons8.com/?size=30&id=DZe3wFKTc8IK&format=png&color=000000"
+                         alt="searchButton"/>
                 </button>
             </form>
             <div className={css.MoviesBySearchComponentDiv}>
                 {moviesBySearch && moviesBySearch.results.map(movie => (
-                    <Movie key={movie.id} movie={movie} />
+                    <Movie key={movie.id} movie={movie}/>
                 ))}
             </div>
             {moviesBySearch && moviesBySearch.results.length > 0 &&
-                <PaginationComponent page={moviesBySearch.page.toString()} total_pages={moviesBySearch.total_pages} />
+                <PaginationComponent page={moviesBySearch.page.toString()} total_pages={moviesBySearch.total_pages}/>
             }
         </div>
     );
