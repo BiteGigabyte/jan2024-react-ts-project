@@ -1,9 +1,9 @@
-import { useSearchParams } from "react-router-dom";
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import css from './PaginationComponent.module.css';
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {movieActions} from "../../redux/slices/movieSlice";
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { movieActions } from '../../redux/slices/movieSlice';
 
 interface IProps {
     page: string;
@@ -11,16 +11,27 @@ interface IProps {
 }
 
 const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
-    let [query, setQuery] = useSearchParams();
+    const [query, setQuery] = useSearchParams();
     const currentPage = parseInt(page);
-
-    let dispatch = useAppDispatch();
-    let {searchName} = useAppSelector(state => state.movies);
+    const dispatch = useAppDispatch();
+    const { searchName } = useAppSelector((state) => state.movies);
+    const [selectedPage, setSelectedPage] = useState(currentPage.toString());
 
     const goToPage = (newPage: number) => {
         setQuery({ page: newPage.toString() });
-        dispatch(movieActions.searchNameSaver({searchPage: newPage.toString(), searchName: `${searchName}`}))
+        setSelectedPage(newPage.toString());
+        dispatch(movieActions.searchNameSaver({ searchPage: newPage.toString(), searchName }));
     };
+
+    const handlePageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const newPage = parseInt(event.target.value);
+        setQuery({ page: newPage.toString() });
+        setSelectedPage(event.target.value);
+        dispatch(movieActions.searchNameSaver({ searchPage: event.target.value, searchName }));
+    };
+
+    // Генеруємо список сторінок від 1 до total_pages
+    const pages = Array.from({ length: total_pages }, (_, index) => index + 1);
 
     return (
         <div className={css.PaginationComponentDiv}>
@@ -28,7 +39,8 @@ const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
                 className={currentPage <= 1 ? css.disabledButton : css.paginationButton}
                 onClick={() => goToPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage <= 1}
-                type='button'>
+                type="button"
+            >
                 <img
                     width="50"
                     height="50"
@@ -36,12 +48,23 @@ const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
                     alt="circled-chevron-left"
                 />
             </button>
-            <h2>{query.get('page') ? query.get('page') : '1'}</h2>
+            <select
+                className={css.pageSelect}
+                value={selectedPage}
+                onChange={handlePageChange}
+            >
+                {pages.map((pageNumber) => (
+                    <option key={pageNumber} value={pageNumber}>
+                        Page <b>{pageNumber}</b>
+                    </option>
+                ))}
+            </select>
             <button
                 className={currentPage >= total_pages ? css.disabledButton : css.paginationButton}
                 onClick={() => goToPage(Math.min(total_pages, currentPage + 1))}
                 disabled={currentPage >= total_pages}
-                type='button'>
+                type="button"
+            >
                 <img
                     width="50"
                     height="50"

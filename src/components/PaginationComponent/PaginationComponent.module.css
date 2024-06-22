@@ -41,3 +41,38 @@
 .PaginationComponentDiv > button.active {
     background-color: darkcyan; /* Колір фону для активної кнопки */
 }
+
+
+.PaginationComponentDiv {
+    display: flex;
+    justify-content: center; /* Центрування по горизонталі */
+    align-items: center; /* Центрування по вертикалі */
+    gap: 10px; /* Відступ між елементами */
+}
+
+.pageSelect {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none; /* Сховати стандартну стрілку вибору */
+    background-image: url("https://img.icons8.com/android/24/000000/down-arrow.png"); /* Додати свою іконку для стрілки вибору */
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px;
+    cursor: pointer;
+    width: 111px; /* Налаштуйте ширину на ваш смак */
+    color: deepskyblue;
+    text-align: center; /* Центрування тексту */
+}
+
+.pageSelect:focus {
+    outline: none; /* Видалити обведення при фокусі */
+    border-color: #007bff; /* Змінити колір обрамлення при фокусі */
+    text-align: center; /* Центрування тексту */
+}
+
+.pageSelect option {
+    font-size: 16px;
+}
+
