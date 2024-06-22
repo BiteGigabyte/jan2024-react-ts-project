@@ -12,7 +12,7 @@ interface IFormProps {
     searchName: string,
 }
 
-const FormComponent: FC = () => {
+const MoviesBySearchComponent: FC = () => {
     const { moviesBySearch } = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
@@ -64,4 +64,4 @@ const FormComponent: FC = () => {
     );
 };
 
-export default FormComponent;
+export default MoviesBySearchComponent;

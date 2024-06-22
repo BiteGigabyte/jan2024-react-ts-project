@@ -33,7 +33,7 @@ const GenresPage = () => {
                     />
                 )) : '...loading genres.'}
             </div>
-            <MoviesByGenresComponent />
+            <MoviesByGenresComponent/>
         </div>
     );
 };

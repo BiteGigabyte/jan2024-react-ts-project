@@ -1,0 +1,75 @@
+.MovieInfoComponentButton {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+
+    margin-left: 2vw;
+}
+
+.MovieInfoComponentButton > img {
+    background-color: lightskyblue;
+    border-radius: 50%;
+}
+.MovieInfoComponentButton > img:hover {
+    background-color: deepskyblue;
+
+}
+
+.MovieInfoComponentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.MovieInfoComponentDiv span {
+    display: block;
+}
+
+.genresSpan {
+    display: block;
+}
+
+.MovieInfoComponentDivTitleDiv {
+    font-size: 250%;
+    font-weight: bold;
+
+    margin-bottom: 1vh;
+}
+
+.MovieInfoComponentDivDiv {
+    display: flex;
+
+    column-gap: 6vw;
+}
+
+.MovieInfoComponentDivDivGeneralDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5vh;
+}
+
+.MovieInfoComponentDivDivImage {
+    width: 40vw;
+}
+
+.MovieInfoComponentDivDivGeneralDivDIv {
+    display: flex;
+}
+
+.genreElem {
+    margin-right: 1vw;
+}
+
+.MovieInfoComponentDivOverviewDiv {
+    width: 89vw;
+    margin-top: 2vh;
+    margin-bottom: 7vh;
+}
