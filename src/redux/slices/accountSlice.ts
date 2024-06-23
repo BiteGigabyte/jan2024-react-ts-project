@@ -15,7 +15,7 @@ let initialState:IState = {
 
 const getAccountDetails= createAsyncThunk<IAccount, void>  (
     'accountSlice/getAccountDetails',
-    async (p_, {rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
         try {
             let {data} = await accountService.accountInfo();
             return data;

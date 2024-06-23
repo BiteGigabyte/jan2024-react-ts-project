@@ -21,7 +21,9 @@ const MoviePage = () => {
             }
         };
 
-        fetchMovie();
+        fetchMovie().catch((error) => {
+            console.error("An unexpected error occurred:", error);
+        });
     }, [id]);
 
     return (

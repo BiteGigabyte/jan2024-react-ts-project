@@ -8,7 +8,6 @@ import {IMovieInterface} from "../interfaces/movie.interface";
 
 const movieService = {
     getMovies: async (page: string): Promise<AxiosResponse<IPagination<IMovie>>> => {
-        // console.log(axiosResponse);
         return await apiService.get(urls.movies.base(page));
     },
     getImage: async (imageName: string): Promise<AxiosResponse<Blob>> => {
@@ -18,9 +17,7 @@ const movieService = {
         return response.data;
     },
     getMovie: async (id: number): Promise<AxiosResponse<IMovieInterface>> => {
-        const movie = await apiService.get(urls.movies.movie_details(id));
-        console.log(movie);
-        return movie;
+        return await apiService.get(urls.movies.movie_details(id));
     },
     searchByGenres: async (genreNumber: number, page: number): Promise<AxiosResponse<IPagination<IMovie>>> => await apiService.get(urls.movies.sortByGenres(genreNumber, page)),
     getGenres: async (): Promise<AxiosResponse<IGenres>> => await apiService.get(urls.movies.genres),

@@ -65,7 +65,6 @@ const getMoviesByGenre = createAsyncThunk<IPagination<IMovie>, GetMoviesByGenreA
     async ({ id, page }, { rejectWithValue }) => {
         try {
             const response = await movieService.searchByGenres(id, page);
-            console.log(response);
             return response.data; // Повертаємо дані, які очікує createAsyncThunk
         } catch (error) {
             return rejectWithValue(error); // Обробляємо помилку

@@ -10,7 +10,7 @@ import css from './MoviesByGenres.module.css';
 const MoviesByGenresComponent = () => {
     const { id } = useParams<{ id: string }>(); // Отримуємо genreId з URL
     const { moviesByGenre } = useAppSelector(state => state.movies);
-    const [query, setQuery] = useSearchParams({ page: '1' });
+    const [query] = useSearchParams({ page: '1' });
     const dispatch = useAppDispatch();
 
 

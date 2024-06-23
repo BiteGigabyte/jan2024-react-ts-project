@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
-    const [query, setQuery] = useSearchParams();
+    const [, setQuery] = useSearchParams();
     const currentPage = parseInt(page);
     const dispatch = useAppDispatch();
     const { searchName } = useAppSelector((state) => state.movies);
@@ -55,7 +55,7 @@ const PaginationComponent: FC<IProps> = ({ page, total_pages }) => {
             >
                 {pages.map((pageNumber) => (
                     <option key={pageNumber} value={pageNumber}>
-                        Page <b>{pageNumber}</b>
+                        Page {pageNumber}
                     </option>
                 ))}
             </select>
