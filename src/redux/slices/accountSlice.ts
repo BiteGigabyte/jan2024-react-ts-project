@@ -1,14 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IPagination} from "../../interfaces/paginationInterface";
-import {IMovie} from "../../interfaces/movies.interface";
-import {movieService} from "../../services/movieService";
-import {IGenres} from "../../interfaces/genres.interface";
+
 import {IAccount} from "../../interfaces/account.interface";
 import {accountService} from "../../services/accountService";
 
 interface IState {
     account: IAccount | null;
-    error: string | null;
+    error: boolean | null;
 }
 
 let initialState:IState = {
@@ -40,8 +37,8 @@ let accountSlice = createSlice({
                     state.account = action.payload;
                 }
             })
-            .addCase(getAccountDetails.rejected, (state, action) => {
-                // state.error = 'erroro';
+            .addCase(getAccountDetails.rejected, (state) => {
+                state.error = true;
             })
 
 });

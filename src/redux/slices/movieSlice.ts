@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isRejected} from "@reduxjs/toolkit";
 import {IPagination} from "../../interfaces/paginationInterface";
 import {IMovie} from "../../interfaces/movies.interface";
 import {movieService} from "../../services/movieService";
@@ -6,7 +6,7 @@ import {IGenres} from "../../interfaces/genres.interface";
 
 interface IState {
     movies: IMovie[];
-    error: string | null;
+    error: boolean | null;
     total_pages: number | null;
     genres: IGenres | null;
     moviesByGenre: IPagination<IMovie> | null;
@@ -108,37 +108,49 @@ let movieSlice = createSlice({
                     state.movies = action.payload.results;
                     state.total_pages = action.payload.total_pages;
                 }
-                // else {
-                //     state.movies = [];
-                // }
-            })
-            .addCase(getMovies.rejected, (state, action) => {
-                // state.error = 'erroro';
             })
             .addCase(getGenres.fulfilled, (state, action) => {
                 state.genres = action.payload;
             })
-            .addCase(getGenres.rejected, (state, action) => {
-                // state.error = 'erroro';
-            })
             .addCase(getMoviesByGenre.fulfilled, (state, action) => {
                 state.moviesByGenre = action.payload;
             })
-            .addCase(getMoviesByGenre.rejected, (state, action) => {
-                // state.error = 'erroro';
-            })
             .addCase(searchMovies.fulfilled, (state,  action) => {
             state.moviesBySearch = action.payload;
-            })
-            .addCase(searchMovies.rejected, (state,  action) => {
-            // state.error = actions.payload;
             })
             .addCase(searchNameSaver.fulfilled, (state, action) => {
                 state.searchName = action.payload.searchName;
                 state.searchPage = action.payload.searchPage;
             })
-            .addCase((searchNameSaver.rejected), (state, action) => {
-                //.....
+            .addMatcher(isRejected(getMovies), (state) => {
+                state.error = true;
+            })
+            .addMatcher(isFulfilled(getMovies), (state) => {
+                state.error = false;
+            })
+            .addMatcher(isRejected(getGenres), (state) => {
+                state.error = true;
+            })
+            .addMatcher(isFulfilled(getGenres), (state) => {
+                state.error = false;
+            })
+            .addMatcher(isRejected(getMoviesByGenre), (state) => {
+                state.error = true;
+            })
+            .addMatcher(isFulfilled(getMoviesByGenre), (state) => {
+                state.error = false;
+            })
+            .addMatcher(isRejected(searchMovies), (state) => {
+                state.error = true;
+            })
+            .addMatcher(isFulfilled(searchMovies), (state) => {
+                state.error = false;
+            })
+            .addMatcher(isRejected(searchNameSaver), (state) => {
+                state.error = true;
+            })
+            .addMatcher(isFulfilled(searchNameSaver), (state) => {
+                state.error = false;
             })
 
 });
