@@ -15,7 +15,9 @@ const router = createBrowserRouter([
             {path: 'info/:id', element: <MoviePage/>},
         ]
     }
-])
+],
+    {basename: '/jan2024-react-ts-project'
+})
 
 export {
     router
